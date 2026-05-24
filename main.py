@@ -1,3 +1,4 @@
+import argparse
 import os
 import shutil
 import time
@@ -24,10 +25,29 @@ from btrc.json_io import list_layout_json_files, read_layout_json, write_layout_
 from btrc.output_bundle import write_pack_guide
 
 
-def choose_locale():
-    choice = input("Language / 言語 (ja/en) [ja]: ").strip().lower()
-    if choice not in {"ja", "en"}:
-        choice = "ja"
+def parse_args(argv=None):
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--lang",
+        choices=("ja", "en"),
+        help="Skip language selection and use the specified language.",
+    )
+    parser.add_argument(
+        "-y",
+        "--yes",
+        action="store_true",
+        help="Skip the confirmation prompt and run with the current settings.",
+    )
+    return parser.parse_args(argv)
+
+
+def choose_locale(lang=None):
+    if lang is None:
+        choice = input("Language / 言語 (ja/en) [ja]: ").strip().lower()
+        if choice not in {"ja", "en"}:
+            choice = "ja"
+    else:
+        choice = lang
     set_locale(choice)
     return choice
 
@@ -57,9 +77,10 @@ def reset_dir(path):
     os.makedirs(path, exist_ok=True)
 
 
-def main():
+def main(argv=None):
+    args = parse_args(argv)
     start_time = time.perf_counter()
-    locale = choose_locale()
+    locale = choose_locale(args.lang)
     # print_paths()
     print(t("btrc_start"))
 
@@ -75,7 +96,7 @@ def main():
 
     print(t("color_json_load_success").format(path=color_config_path))
     print_loaded_color_preview(text_free_colors, text_select_colors)
-    if not confirm_apply_colors():
+    if not args.yes and not confirm_apply_colors():
         print(t("operation_cancelled"))
         return
 

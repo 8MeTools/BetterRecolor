@@ -1,5 +1,7 @@
 import builtins
 
+import pytest
+
 from btrc.output_bundle import PACK_GUIDE_FILENAME
 import main as app
 
@@ -11,6 +13,24 @@ def test_choose_locale_defaults_to_ja_for_unknown_input(monkeypatch):
 
     assert app.choose_locale() == "ja"
     assert selected == ["ja"]
+
+
+def test_choose_locale_uses_arg_without_prompt(monkeypatch):
+    selected = []
+    monkeypatch.setattr(
+        builtins,
+        "input",
+        lambda _: (_ for _ in ()).throw(AssertionError("input should not be called")),
+    )
+    monkeypatch.setattr(app, "set_locale", lambda locale: selected.append(locale))
+
+    assert app.choose_locale("en") == "en"
+    assert selected == ["en"]
+
+
+def test_parse_args_rejects_invalid_lang():
+    with pytest.raises(SystemExit):
+        app.parse_args(["--lang", "fr"])
 
 
 def test_copy_all_preserves_nested_structure(tmp_path):
@@ -62,7 +82,7 @@ def test_write_pack_guide_falls_back_to_japanese_for_unknown_locale(tmp_path):
 
 def test_main_returns_before_side_effects_when_color_config_fails(monkeypatch):
     events = []
-    def fake_choose_locale():
+    def fake_choose_locale(lang=None):
         events.append("locale")
         return "en"
 
@@ -75,14 +95,14 @@ def test_main_returns_before_side_effects_when_color_config_fails(monkeypatch):
     monkeypatch.setattr(app, "reset_dir", lambda path: events.append("reset"))
     monkeypatch.setattr(builtins, "print", lambda *args, **kwargs: None)
 
-    app.main()
+    app.main([])
 
     assert events == ["locale"]
 
 
 def test_main_returns_before_file_work_when_user_cancels(monkeypatch):
     events = []
-    def fake_choose_locale():
+    def fake_choose_locale(lang=None):
         events.append("locale")
         return "en"
 
@@ -97,7 +117,7 @@ def test_main_returns_before_file_work_when_user_cancels(monkeypatch):
     monkeypatch.setattr(app, "reset_dir", lambda path: events.append("reset"))
     monkeypatch.setattr(builtins, "print", lambda *args, **kwargs: None)
 
-    app.main()
+    app.main([])
 
     assert events == ["locale", "preview"]
 
@@ -140,7 +160,7 @@ def test_main_happy_path_calls_major_steps_in_order(monkeypatch, tmp_path):
     def fake_write_layout_json(path, data):
         events.append("write_brlan")
 
-    def fake_choose_locale():
+    def fake_choose_locale(lang=None):
         events.append("locale")
         return "en"
 
@@ -170,7 +190,7 @@ def test_main_happy_path_calls_major_steps_in_order(monkeypatch, tmp_path):
     monkeypatch.setattr(app, "write_pack_guide", lambda output, locale: events.append(f"guide:{locale}"))
     monkeypatch.setattr(builtins, "print", lambda *args, **kwargs: None)
 
-    app.main()
+    app.main([])
 
     assert events == [
         "locale",
@@ -187,6 +207,59 @@ def test_main_happy_path_calls_major_steps_in_order(monkeypatch, tmp_path):
         "rule",
         "brlan",
         "write_brlan",
+        "encode",
+        "cleanup",
+        "move",
+        "move",
+        "guide:en",
+    ]
+
+
+def test_main_cli_lang_yes_skips_prompts(monkeypatch):
+    events = []
+
+    monkeypatch.setattr(
+        builtins,
+        "input",
+        lambda _: (_ for _ in ()).throw(AssertionError("input should not be called")),
+    )
+    monkeypatch.setattr(app, "set_locale", lambda locale: events.append(f"locale:{locale}"))
+    monkeypatch.setattr(
+        app,
+        "load_color_settings_from_json",
+        lambda path: (
+            {"color_yajirushi": ((5, 5, 5), (6, 6, 6))},
+            ((1, 1, 1), (2, 2, 2)),
+            ((3, 3, 3), (4, 4, 4)),
+        ),
+    )
+    monkeypatch.setattr(app, "print_loaded_color_preview", lambda *args: events.append("preview"))
+    monkeypatch.setattr(
+        app,
+        "confirm_apply_colors",
+        lambda: (_ for _ in ()).throw(
+            AssertionError("confirm_apply_colors should not be called")
+        ),
+    )
+    monkeypatch.setattr(app, "reset_dir", lambda path: events.append("reset"))
+    monkeypatch.setattr(app, "copy_all", lambda src, dst: events.append("copy"))
+    monkeypatch.setattr(app, "list_layout_json_files", lambda root: [])
+    monkeypatch.setattr(app, "encode_layout_json_files", lambda files, script: events.append("encode"))
+    monkeypatch.setattr(app, "remove_json_files", lambda files: events.append("cleanup"))
+    monkeypatch.setattr(app, "move_all_files", lambda src, dst: events.append("move"))
+    monkeypatch.setattr(app, "write_pack_guide", lambda output, locale: events.append(f"guide:{locale}"))
+    monkeypatch.setattr(builtins, "print", lambda *args, **kwargs: None)
+
+    app.main(["--lang", "en", "--yes"])
+
+    assert events == [
+        "locale:en",
+        "preview",
+        "reset",
+        "reset",
+        "reset",
+        "copy",
+        "copy",
         "encode",
         "cleanup",
         "move",
