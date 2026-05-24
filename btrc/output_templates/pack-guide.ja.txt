@@ -16,7 +16,8 @@ Channel.szsなどの通常のアセットはそのまま配置できますが、
 - ReplacedAssets.szs
 - UIAssets.szs
 
-そのため、このフォルダに含まれる"ReplacedAssets.d"と"UIAssets.d"は「基本的な移植の方法」とは異なり、以下の方法でパッチを作成することができます。
+そのため、このフォルダに含まれる"ReplacedAssets.d"と"RRUIAssets.d"は「基本的な移植の方法」とは異なり、以下の方法でパッチを作成することができます。
+注意: 検証したところ、実機(Wii/WiiU)ではこの方法では起動時にクラッシュする不具合を確認しています。実機で使用する場合は、基本的な移植の方法で移植してください。
 
 1.  このフォルダ内の"ReplacedAssets.d"と"RRUIAssets.d"をそれぞれ個別に圧縮し、"ReplacedAssets.szs"と"RRUIAssets.szs"を作成します。
 2.  作成された"ReplacedAssets.szs"と"RRUIAssets.szs"を以下のような形で名前を変更します。

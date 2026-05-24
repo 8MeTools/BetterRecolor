@@ -17,6 +17,8 @@ Standard assets such as Channel.szs can be placed as-is, but the following files
 - UIAssets.szs
 
 Because of this, handle the included "ReplacedAssets.d" and "RRUIAssets.d" folders differently from the "Basic Migration Method" and create patch files as follows.
+Note: Verification has confirmed that this method causes a crash on startup when using actual hardware (Wii/Wii U). 
+If you are using actual hardware, please use the basic migration method for the port.
 
 1.  Compress "ReplacedAssets.d" and "RRUIAssets.d" separately to create "ReplacedAssets.szs" and "RRUIAssets.szs".
 2.  Rename the generated "ReplacedAssets.szs" and "RRUIAssets.szs" as follows:
