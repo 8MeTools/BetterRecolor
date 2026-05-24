@@ -1,5 +1,6 @@
 import builtins
 
+from btrc.output_bundle import PACK_GUIDE_FILENAME
 import main as app
 
 
@@ -39,23 +40,23 @@ def test_reset_dir_recreates_empty_directory(tmp_path):
 def test_write_pack_guide_creates_japanese_user_guide(tmp_path):
     guide_path = app.write_pack_guide(tmp_path, "ja")
 
-    assert guide_path == str(tmp_path / app.PACK_GUIDE_FILENAME)
-    guide_text = (tmp_path / app.PACK_GUIDE_FILENAME).read_text(encoding="utf-8")
+    assert guide_path == str(tmp_path / PACK_GUIDE_FILENAME)
+    guide_text = (tmp_path / PACK_GUIDE_FILENAME).read_text(encoding="utf-8")
     assert "日本語" in guide_text
 
 
 def test_write_pack_guide_creates_english_user_guide(tmp_path):
     guide_path = app.write_pack_guide(tmp_path, "en")
 
-    assert guide_path == str(tmp_path / app.PACK_GUIDE_FILENAME)
-    guide_text = (tmp_path / app.PACK_GUIDE_FILENAME).read_text(encoding="utf-8")
+    assert guide_path == str(tmp_path / PACK_GUIDE_FILENAME)
+    guide_text = (tmp_path / PACK_GUIDE_FILENAME).read_text(encoding="utf-8")
     assert "English" in guide_text
 
 
 def test_write_pack_guide_falls_back_to_japanese_for_unknown_locale(tmp_path):
     app.write_pack_guide(tmp_path, "unknown")
 
-    guide_text = (tmp_path / app.PACK_GUIDE_FILENAME).read_text(encoding="utf-8")
+    guide_text = (tmp_path / PACK_GUIDE_FILENAME).read_text(encoding="utf-8")
     assert "日本語" in guide_text
 
 
