@@ -16,10 +16,10 @@ Standard assets such as Channel.szs can be placed as-is, but the following files
 - ReplacedAssets.szs
 - UIAssets.szs
 
-Because of this, handle the included "ReplacedAssets.d" and "UIAssets.d" folders differently from the "Basic Migration Method" and create patch files as follows.
+Because of this, handle the included "ReplacedAssets.d" and "RRUIAssets.d" folders differently from the "Basic Migration Method" and create patch files as follows.
 
-1.  Compress "ReplacedAssets.d" and "UIAssets.d" separately to create "ReplacedAssets.szs" and "UIAssets.szs".
-2.  Rename the generated "ReplacedAssets.szs" and "UIAssets.szs" as follows:
+1.  Compress "ReplacedAssets.d" and "RRUIAssets.d" separately to create "ReplacedAssets.szs" and "RRUIAssets.szs".
+2.  Rename the generated "ReplacedAssets.szs" and "RRUIAssets.szs" as follows:
     "yourmodname.replacedassets.szs" (*1)
     "yourmodname.uiassets.szs" (*2)
 

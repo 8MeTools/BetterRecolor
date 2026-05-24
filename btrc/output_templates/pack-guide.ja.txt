@@ -18,8 +18,8 @@ Channel.szsなどの通常のアセットはそのまま配置できますが、
 
 そのため、このフォルダに含まれる"ReplacedAssets.d"と"UIAssets.d"は「基本的な移植の方法」とは異なり、以下の方法でパッチを作成することができます。
 
-1.  このフォルダ内の"ReplacedAssets.d"と"UIAssets.d"をそれぞれ個別に圧縮し、"ReplacedAssets.szs"と"UIAssets.szs"を作成します。
-2.  作成された"ReplacedAssets.szs"と"UIAssets.szs"を以下のような形で名前を変更します。
+1.  このフォルダ内の"ReplacedAssets.d"と"RRUIAssets.d"をそれぞれ個別に圧縮し、"ReplacedAssets.szs"と"RRUIAssets.szs"を作成します。
+2.  作成された"ReplacedAssets.szs"と"RRUIAssets.szs"を以下のような形で名前を変更します。
     "yourmodname.replacedassets.szs" (※1)
     "yourmodname.uiassets.szs" (※2)
     
