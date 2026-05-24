@@ -1,4 +1,5 @@
 BetterRecolor Outputフォルダ移植ガイド(日本語)
+最終更新日: 2026/05/24
 
 このフォルダには、ボタンやテキストカラーを変更したファイルと、変更に必要な関連ファイルのみが格納されています。
 原則として、これらのファイル単体では動作しません。ご自身のアセットファイルに移植する必要があります。
@@ -25,7 +26,7 @@ Channel.szsなどの通常のアセットはそのまま配置できますが、
     ※1  yourmodnameはご自身で好きな名前を指定することができます。
     ※2  ゲームの設定で言語を「日本語」に設定している場合は、"uiassets"を"uiassets_j"にしてください。
 3.  Retro Rewindの"Patches"フォルダにそれぞれを配置すると、Retro Rewindで読み込まれます。
-    WheelWizardを使用している場合は、ファイルをインポートする際に上記のSZSを選択してください。
+    WheelWizardを使用している場合は、作成したSZSファイルをModとしてインポートしてください。
 
 ### WheelWizardを利用している場合のフォルダ構造の例
 ```tree
@@ -37,10 +38,14 @@ Mods/<任意のMod名>/
     MenuSingle.szs
     Race.szs
     Title.szs
-    tutorial.ini
+    <任意のMod名>.ini
     yourmodname.replacedassets.szs
     yourmodname.uiassets.szs
 ```
+
+注意: <任意のMod名>.iniはWheelWizardが自動生成します。
+上記の構造では、WheelWizardが「INCOMPATIBLE MOD（互換性のないMod）」として認識する可能性がありますが、問題なく使用できます。
+右クリックで「Convert to Patches（Patchesに変換）」を選択すると、正常にパッチが適用されない場合があるため、上記の構造のまま使用してください。
 
 ### それ以外（Riivolutionパッチ）のフォルダ構造の例
 ```tree
@@ -52,7 +57,6 @@ RetroRewind6/Patches/
     MenuSingle.szs
     Race.szs
     Title.szs
-    tutorial.ini
     yourmodname.replacedassets.szs
     yourmodname.uiassets.szs
 ```
