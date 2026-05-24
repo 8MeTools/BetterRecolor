@@ -1,0 +1,28 @@
+{
+  "presets": {
+    "fuchi_pattern2": {
+      "white": "#828282",
+      "black": "#FAFAFA"
+    },
+    "color_base2": {
+      "white": "#505050",
+      "black": "#505050"
+    },
+    "color_yajirushi": {
+      "white": "#646464",
+      "black": "#FFFFFF"
+    },
+    "ability_graph2": {
+      "white": "#FAFAFA",
+      "black": "#000000"
+    },
+    "black_pt00": {
+      "white": "#FAFAFA",
+      "black": "#FAFAFA"
+    }
+  },
+  "outline": {
+    "free": "#1e1e1e",
+    "select": "#646464"
+  }
+}
