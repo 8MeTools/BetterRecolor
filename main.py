@@ -21,6 +21,7 @@ from btrc.colors import (
 from btrc.encode import encode_layout_json_files
 from btrc.i18n import set_locale, t
 from btrc.json_io import list_layout_json_files, read_layout_json, write_layout_json
+from btrc.output_bundle import write_pack_guide
 
 
 def choose_locale():
@@ -58,7 +59,7 @@ def reset_dir(path):
 
 def main():
     start_time = time.perf_counter()
-    choose_locale()
+    locale = choose_locale()
     # print_paths()
     print(t("btrc_start"))
 
@@ -138,6 +139,7 @@ def main():
     print(t("move_tmp_to_edited"))
     move_all_files(BRLYT_JSON_DIR, OUTPUT_DIR)
     move_all_files(BRLAN_JSON_DIR, OUTPUT_DIR)
+    write_pack_guide(OUTPUT_DIR, locale)
     elapsed = time.perf_counter() - start_time
     print(t("btrc_done").format(elapsed=elapsed))
 
