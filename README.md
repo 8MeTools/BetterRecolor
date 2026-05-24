@@ -8,7 +8,7 @@ For Japanese, see [README_JP.md](README_JP.md).
 ## Overview
 
 This tool lets you batch-edit button and text colors shown in-game.  
-It edits files decoded to JSON5 format, then encodes them back to BRLYT (layout files) and BRLAN (animation files). You can use it on Google Colab or in a local environment.
+It edits files decoded to JSON or JSON5 format, then encodes them back to BRLYT (layout files) and BRLAN (animation files). You can use it on Google Colab or in a local environment.
 
 ## Getting Started
 
@@ -49,14 +49,14 @@ The input/output model is the same for both methods:
 
    Run only until these setup tasks are complete:
 
-   - Mount Google Drive
-   - Move to `MyDrive/8MeTools` and re-fetch `BetterRecolor` (the existing `BetterRecolor` folder will be removed and cloned again)
+   - Re-fetch `BetterRecolor` under `/content/BetterRecolor` (any existing `/content/BetterRecolor` directory will be removed before cloning)
+   - Remove development files that are not needed for Colab execution
    - Install dependencies from `requirements.txt`
 
 > [!WARNING]
-> The Colab setup cell will delete the existing `/content/drive/MyDrive/8MeTools/BetterRecolor` folder before cloning.  
-> If you have an edited `color_config.json`, download it beforehand or copy it somewhere else in Google Drive, then move it back after setup.
-> However, since the JSON structure may change, it's recommended to check the latest `color_config.json` on GitHub before editing.
+> The Colab setup cell deletes the existing `/content/BetterRecolor` directory before cloning.  
+> If you have edited `color_config.json` or added input files under `/content/BetterRecolor`, download them first or copy them to a separate location such as Google Drive, then move them back after setup.
+> Since the JSON structure may change between versions, it is recommended to review the latest `color_config.json` on GitHub before editing.
 
    When setup finishes successfully, you should see this message:
 
@@ -71,15 +71,14 @@ The input/output model is the same for both methods:
 
    Edit this file:
 
-   `/content/drive/MyDrive/8MeTools/BetterRecolor/color_config.json`
+   `/content/BetterRecolor/color_config.json`
 
    - `presets`: Colors used on the BRLYT side
    - `outline.free` / `outline.select`: Outline colors used on the BRLAN side
    - Use `#RRGGBB` format for all color values
 
 > [!NOTE]
-> In Colab, you can open the left file pane and go through `MyDrive` -> `8MeTools` -> `BetterRecolor`, then double-click `color_config.json` to edit it.
-> ![How to open color_config.json in Colab](./docs/img/RM_Guide_Colab_Open_File.png)
+> In Colab, open the left file pane and go to `content` -> `BetterRecolor`, then double-click `color_config.json` to edit it.
 
 4. **Run the remaining cells from top to bottom**
 
@@ -90,13 +89,18 @@ The input/output model is the same for both methods:
 
    If a confirmation prompt appears for color settings, review it and continue.
 
+   To run without interactive prompts, you can change the execution cell to:
+
+   ```sh
+   !python main.py --lang en --yes
+   ```
+
+   - `--lang en`: Skip language selection and run in English
+   - `--yes` / `-y`: Automatically confirm the color settings
+
 5. **Get generated files**
 
-   Open this folder in Google Drive:
-
-   `MyDrive` -> `8MeTools` -> `BetterRecolor`
-
-   Download `Output`.
+   Run the final cell to compress `Output` into `Output.zip` and download it from the browser.
 
 6. **Apply files to your game assets**
 
@@ -141,6 +145,15 @@ The input/output model is the same for both methods:
    python3 main.py
    ```
 
+   To run without interactive prompts, use:
+
+   ```sh
+   python main.py --lang en --yes
+   ```
+
+   - `--lang ja` / `--lang en`: Skip language selection
+   - `--yes` / `-y`: Automatically confirm the color settings
+
 4. **Choose language and confirm settings**
 
    At startup, you will see:
@@ -153,7 +166,7 @@ The input/output model is the same for both methods:
 
 5. **Check output**
 
-   After processing, files are written to `Output`.
+   After processing, files are written to `Output`. The output includes generated files and `pack-guide.txt`.
 
 #### Notes for Re-runs
 
@@ -161,8 +174,8 @@ The input/output model is the same for both methods:
   - Each run recreates `tmp` and `Output`.
   - If you need previous output, back it up before running again.
 - **Google Colab**
-  - In the provided notebook, the setup step removes and re-clones the entire `MyDrive/8MeTools/BetterRecolor` directory.
-  - Any assets or config files placed under that directory will be deleted on re-run. Store long-term data elsewhere in Drive or back it up before rerunning the setup cells.
+  - In the provided notebook, the setup step removes and re-clones the entire `/content/BetterRecolor` directory.
+  - Any assets or edited config files placed under that directory will be deleted on re-run. Store long-term data in Google Drive, `/content/drive`, or another location that is not removed by the setup step.
 
 ## For Developers
 
