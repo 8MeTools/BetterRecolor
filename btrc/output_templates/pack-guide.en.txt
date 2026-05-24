@@ -1,2 +1,60 @@
-Guide to Moving the BetterRecolor Output Folder(English)
+BetterRecolor Output Folder Migration Guide (English)
 
+This folder contains files that modify button and text colors, along with the related files required for those changes.
+In most cases, these files do not work by themselves. You need to migrate them into your own asset files.
+
+## Basic Migration Method
+1. Extract your own asset files beforehand.
+2. Copy the asset folders in this folder (such as Channel.d) into the matching folders extracted in step 1, overwriting the existing files.
+3. Repack your asset files.
+
+## Using with Retro Rewind 6.10 or Later
+Retro Rewind 6.10 and later include the Patches feature, which allows more flexible patching.
+Standard assets such as Channel.szs can be placed as-is, but the following files should be renamed for use with the Patches feature.
+
+- ReplacedAssets.szs
+- UIAssets.szs
+
+Because of this, the "ReplacedAssets.d" and "UIAssets.d" folders included in this folder can be used to create patches with the following method, unlike the "Basic Migration Method".
+
+1.  Compress "ReplacedAssets.d" and "UIAssets.d" separately to create "ReplacedAssets.szs" and "UIAssets.szs".
+2.  Rename the generated "ReplacedAssets.szs" and "UIAssets.szs" as follows.
+    "yourmodname.replacedassets.szs" (*1)
+    "yourmodname.uiassets.szs" (*2)
+
+    *1  You can replace yourmodname with any name you like.
+    *2  If the in-game language is set to Japanese, use "uiassets_j" instead of "uiassets".
+3.  Place the files in Retro Rewind's "Patches" folder, and Retro Rewind will load them.
+    If you are using WheelWizard, select the SZS files above when importing the files.
+
+### Example Folder Structure When Using WheelWizard
+```tree
+Mods/<Your Mod Name>/
+    Channel.szs
+    Globe.szs
+    MenuMulti.szs
+    MenuOther.szs
+    MenuSingle.szs
+    Race.szs
+    Title.szs
+    tutorial.ini
+    yourmodname.replacedassets.szs
+    yourmodname.uiassets.szs
+```
+
+### Example Folder Structure for Other Cases (Riivolution Patch)
+```tree
+RetroRewind6/Patches/
+    Channel.szs
+    Globe.szs
+    MenuMulti.szs
+    MenuOther.szs
+    MenuSingle.szs
+    Race.szs
+    Title.szs
+    tutorial.ini
+    yourmodname.replacedassets.szs
+    yourmodname.uiassets.szs
+```
+
+Note: In both cases, enable "Patches" in the in-game settings.

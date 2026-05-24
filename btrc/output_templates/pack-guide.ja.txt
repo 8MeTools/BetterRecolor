@@ -1,2 +1,60 @@
 BetterRecolor Outputフォルダ移植ガイド(日本語)
 
+このフォルダには、ボタンやテキストカラーを変更したファイルと、変更に必要な関連ファイルのみが格納されています。
+原則として、これらのファイル単体では動作しません。ご自身のアセットファイルに移植する必要があります。
+
+## 基本的な移植の方法
+1. ご自分のアセットを事前に展開します。
+2. 本フォルダ内のアセットフォルダ(Channel.dなど)を、手順1で展開した同名フォルダに上書きコピーしてください。
+3. ご自身のアセットを圧縮します。
+
+## Retro Rewind 6.10以降で使用する場合
+Retro Rewind 6.10以降ではPatches機能が搭載されているため、柔軟なパッチを行うことができます。
+Channel.szsなどの通常のアセットはそのまま配置できますが、以下のファイルはPatches機能向けにリネームして使用します。
+
+- ReplacedAssets.szs
+- UIAssets.szs
+
+そのため、このフォルダに含まれる"ReplacedAssets.d"と"UIAssets.d"は「基本的な移植の方法」とは異なり、以下の方法でパッチを作成することができます。
+
+1.  このフォルダ内の"ReplacedAssets.d"と"UIAssets.d"をそれぞれ個別に圧縮し、"ReplacedAssets.szs"と"UIAssets.szs"を作成します。
+2.  作成された"ReplacedAssets.szs"と"UIAssets.szs"を以下のような形で名前を変更します。
+    "yourmodname.replacedassets.szs" (※1)
+    "yourmodname.uiassets.szs" (※2)
+    
+    ※1  yourmodnameはご自身で好きな名前を指定することができます。
+    ※2  ゲームの設定で言語を「日本語」に設定している場合は、"uiassets"を"uiassets_j"にしてください。
+3.  Retro Rewindの"Patches"フォルダにそれぞれを配置すると、Retro Rewindで読み込まれます。
+    WheelWizardを使用している場合は、ファイルをインポートする際に上記のSZSを選択してください。
+
+### WheelWizardを利用している場合のフォルダ構造の例
+```tree
+Mods/<任意のMod名>/
+    Channel.szs
+    Globe.szs
+    MenuMulti.szs
+    MenuOther.szs
+    MenuSingle.szs
+    Race.szs
+    Title.szs
+    tutorial.ini
+    yourmodname.replacedassets.szs
+    yourmodname.uiassets.szs
+```
+
+### それ以外（Riivolutionパッチ）のフォルダ構造の例
+```tree
+RetroRewind6/Patches/
+    Channel.szs
+    Globe.szs
+    MenuMulti.szs
+    MenuOther.szs
+    MenuSingle.szs
+    Race.szs
+    Title.szs
+    tutorial.ini
+    yourmodname.replacedassets.szs
+    yourmodname.uiassets.szs
+```
+
+注意: どちらの場合でも、ゲーム内設定でPatchesを「有効」にしてください。
