@@ -4,6 +4,12 @@ BetterRecolor Outputフォルダ移植ガイド(日本語)
 このフォルダには、ボタンやテキストカラーを変更したファイルと、変更に必要な関連ファイルのみが格納されています。
 原則として、これらのファイル単体では動作しません。ご自身のアセットファイルに移植する必要があります。
 
+## Wiimms SZS Toolsについて
+アセットファイルの展開や圧縮には、Wiimms SZS Toolsを使用することを推奨します。
+基本的なコマンドについては、以下のページを参照してください。
+https://8metools.github.io/8MeBlog/?page=general-wszst-cmd
+https://mariokartwii.com/showthread.php?tid=14&pid=12180 (英語)
+
 ## 基本的な移植の方法
 1. ご自分のアセットを事前に展開します。
 2. 本フォルダ内のアセットフォルダ(Channel.dなど)を、手順1で展開した同名フォルダに上書きコピーしてください。

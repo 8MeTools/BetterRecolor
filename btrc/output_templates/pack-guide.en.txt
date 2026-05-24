@@ -4,6 +4,12 @@ Last Updated: 2026/05/24
 This folder contains files that modify button and text colors, along with the related files required for those changes.
 In most cases, these files do not work by themselves. You need to merge them into your own asset files.
 
+## Wiimms SZS Tools
+I recommend using Wiimms SZS Tools for extracting and compressing asset files. 
+Please refer to the following page for basic commands.
+https://mariokartwii.com/showthread.php?tid=14&pid=12180
+https://8metools.github.io/8MeBlog/?page=general-wszst-cmd (Japanese)
+
 ## Basic Migration Method
 1. Extract your own asset files first.
 2. Copy the asset folders included here (such as Channel.d) into the matching folders extracted in step 1, overwriting the existing files.
