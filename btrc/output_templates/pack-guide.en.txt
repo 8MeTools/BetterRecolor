@@ -1,0 +1,72 @@
+BetterRecolor Output Folder Porting Guide (English)
+Last Updated: 2026/05/24
+
+This folder contains files that modify button and text colors, along with the related files required for those changes.
+In most cases, these files do not work by themselves. You need to merge them into your own asset files.
+
+## Wiimms SZS Tools
+I recommend using Wiimms SZS Tools for extracting and compressing asset files. 
+Please refer to the following page for basic commands.
+https://mariokartwii.com/showthread.php?tid=14&pid=12180
+https://8metools.github.io/8MeBlog/?page=general-wszst-cmd (Japanese)
+
+## Basic Migration Method
+1. Extract your own asset files first.
+2. Copy the asset folders included here (such as Channel.d) into the matching folders extracted in step 1, overwriting the existing files.
+3. Repack your asset files.
+
+## Using with Retro Rewind 6.10 or Later
+Retro Rewind 6.10 and later include the Patches feature, which allows more flexible patching.
+Standard assets such as Channel.szs can be placed as-is, but the following files need to be renamed before being placed in the Patches folder.
+
+- ReplacedAssets.szs
+- UIAssets.szs
+
+Because of this, handle the included "ReplacedAssets.d" and "RRUIAssets.d" folders differently from the "Basic Migration Method" and create patch files as follows.
+Note: Verification has confirmed that this method causes a crash on startup when using actual hardware (Wii/Wii U). 
+If you are using actual hardware, please use the basic migration method for the port.
+
+1.  Compress "ReplacedAssets.d" and "RRUIAssets.d" separately to create "ReplacedAssets.szs" and "RRUIAssets.szs".
+2.  Rename the generated "ReplacedAssets.szs" and "RRUIAssets.szs" as follows:
+    "yourmodname.replacedassets.szs" (*1)
+    "yourmodname.uiassets.szs" (*2)
+
+    *1  You can replace "yourmodname" with any name you like.
+    *2  If the in-game language is set to Japanese, use "uiassets_j" instead of "uiassets".
+3.  Place the files in Retro Rewind's "Patches" folder, and Retro Rewind will load them.
+    If you are using WheelWizard, import the generated SZS files as a mod.
+
+### Example Folder Structure When Using WheelWizard
+```tree
+Mods/<Your Mod Name>/
+    Channel.szs
+    Globe.szs
+    MenuMulti.szs
+    MenuOther.szs
+    MenuSingle.szs
+    Race.szs
+    Title.szs
+    <Your Mod Name>.ini
+    yourmodname.replacedassets.szs
+    yourmodname.uiassets.szs
+```
+
+Note: <Your Mod Name>.ini is generated automatically by WheelWizard.
+With the structure above, WheelWizard may detect the mod as "INCOMPATIBLE MOD", but it can still be used without issue.
+If you right-click and select "Convert to Patches", the patches may not be applied correctly, so use the structure above as-is.
+
+### Example Folder Structure for Other Cases (Riivolution Patch)
+```tree
+RetroRewind6/Patches/
+    Channel.szs
+    Globe.szs
+    MenuMulti.szs
+    MenuOther.szs
+    MenuSingle.szs
+    Race.szs
+    Title.szs
+    yourmodname.replacedassets.szs
+    yourmodname.uiassets.szs
+```
+
+Note: In both cases, enable "Patches" in the in-game settings.

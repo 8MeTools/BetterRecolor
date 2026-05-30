@@ -8,7 +8,7 @@
 ## 概要
 
 ゲーム内で表示されるボタンやテキストの**色を一括で編集できるツール**です。  
-JSON5形式にデコードされたファイルを編集し、BRLYT（レイアウトファイル）とBRLAN（アニメーションファイル）としてエンコードします。Google Colabでもローカル環境でも使用できます。
+JSON / JSON5 形式にデコードされたファイルを編集し、BRLYT（レイアウトファイル）とBRLAN（アニメーションファイル）としてエンコードします。Google Colabでもローカル環境でも使用できます。
 
 ## はじめに
 
@@ -49,14 +49,14 @@ Google Colaboratoryを初めて利用する方は、以下の動画を参考に�
 
    次の準備処理が完了するところまで実行します。
 
-   - Google Driveのマウント
-   - `MyDrive/8MeTools` への移動と `BetterRecolor` の再取得（既存の `BetterRecolor` フォルダは削除されてから再クローンされます）
+   - `/content/BetterRecolor` の再取得（既存の `/content/BetterRecolor` は削除されてから再クローンされます）
+   - Colab実行に不要な開発用ファイルの削除
    - `requirements.txt` で依存関係をインストール
 
 > [!WARNING]
-> Colabのセットアップ用セルは、既存の `/content/drive/MyDrive/8MeTools/BetterRecolor` フォルダを削除してからクローンします。
-> 編集した `color_config.json` を置いている場合は、セットアップ前にダウンロードしておくか、Googleドライブ上の別の場所にコピーしておき、セットアップ後に戻してください。
->ただし、JSONファイルの構造に変更が入る可能性もあるため、セットアップ後はGitHub上の最新の `color_config.json` を確認してから編集することを推奨します。
+> Colabのセットアップ用セルは、既存の `/content/BetterRecolor` フォルダを削除してからクローンします。
+> `/content/BetterRecolor` に編集済みの `color_config.json` や入力ファイルを置いている場合は、セットアップ前にダウンロードするか、Google Driveなど別の場所にコピーしておき、セットアップ後に戻してください。
+> ただし、JSONファイルの構造に変更が入る可能性もあるため、セットアップ後はGitHub上の最新の `color_config.json` を確認してから編集することを推奨します。
 
    依存関係のインストールが正常に完了すると、次のようなメッセージが表示されます。
 
@@ -69,14 +69,13 @@ Google Colaboratoryを初めて利用する方は、以下の動画を参考に�
 
 3. **`color_config.json` を編集する**
 
-   `/content/drive/MyDrive/8MeTools/BetterRecolor/color_config.json` を編集します。
+   `/content/BetterRecolor/color_config.json` を編集します。
    - `presets`: BRLYT側で使用する色
    - `outline.free` / `outline.select`: BRLAN側で使用する縁取り色
    - すべて `#RRGGBB` 形式で指定
 
 > [!NOTE]
-> Colabの左側のファイルタブから `MyDrive` → `8MeTools` → `BetterRecolor` と進み、`color_config.json` をダブルクリックして編集モードに入ることができます。
-> ![Colabでcolor_config.jsonを開く手順](./docs/img/RM_Guide_Colab_Open_File.png)
+> Colabの左側のファイルタブから `content` → `BetterRecolor` と進み、`color_config.json` をダブルクリックして編集モードに入ることができます。
 
 
 4. **残りのセルを上から順番に実行する**
@@ -88,13 +87,18 @@ Google Colaboratoryを初めて利用する方は、以下の動画を参考に�
 
    途中で色設定の確認が表示されたら、内容を確認して続行します。
 
+   実行時の入力を省略したい場合は、ノートブック内の実行セルを次のように変更できます。
+
+   ```sh
+   !python main.py --lang ja --yes
+   ```
+
+   - `--lang ja`: 言語選択を省略して日本語で実行
+   - `--yes` / `-y`: 色設定の確認に自動で yes と回答
+
 5. **生成物を取得する**
 
-   Google Driveで以下を開きます。
-
-   `マイドライブ` → `8MeTools` → `BetterRecolor`
-
-   その中の `Output` をダウンロードします。
+   最後のセルを実行すると、`Output` フォルダが `Output.zip` に圧縮され、ブラウザからダウンロードできます。
 
 6. **ゲーム用アセットへ反映する**
 
@@ -139,6 +143,15 @@ Google Colaboratoryを初めて利用する方は、以下の動画を参考に�
    python3 main.py
    ```
 
+   入力を省略して実行する場合は、次のオプションを使用できます。
+
+   ```sh
+   python main.py --lang ja --yes
+   ```
+
+   - `--lang ja` / `--lang en`: 起動時の言語選択を省略
+   - `--yes` / `-y`: 色設定の確認に自動で yes と回答
+
 4. **言語を選択し、設定を確認する**
 
    起動時に `Language / 言語 (ja/en) [ja]:` と表示されます。`ja` か `en` を入力してください。
@@ -147,12 +160,12 @@ Google Colaboratoryを初めて利用する方は、以下の動画を参考に�
 
 5. **出力結果を確認する**
 
-   処理完了後、`Output` にファイルが出力されます。
+   処理完了後、`Output` にファイルが出力されます。出力には、生成されたファイルと `pack-guide.txt` が含まれます。
 
 #### 再実行時の注意
 
 - （ローカル環境）実行時に `tmp` / `Output` は毎回作り直されます。以前の出力を残したい場合は、実行前に別フォルダへ退避してください。
-- （Colab 環境）セットアップ用セルを再実行すると、`BetterRecolor` フォルダ自体が削除されて再取得されます。そのフォルダ直下に `Assets` などのファイルを置いている場合、それらもまとめて消えるため、必ず Google ドライブ上の別フォルダや `/content/drive` など再取得の影響を受けない場所に保存してください。
+- （Colab 環境）セットアップ用セルを再実行すると、`/content/BetterRecolor` フォルダ自体が削除されて再取得されます。そのフォルダ直下に `Assets` や編集済みの `color_config.json` などを置いている場合、それらもまとめて消えるため、必ず Google Drive や `/content/drive` など再取得の影響を受けない場所に保存してください。
 
 ## 開発者向け
 
