@@ -1,71 +1,76 @@
-# クイックスタート
+# Quick Start
 
-実行方法は 2 通りあります。
+BetterRecolor can be run in two ways.
 
-| 方法 | 向いている人 |
+| Method | Best for |
 | --- | --- |
-| Google Colab | 環境構築なしでブラウザから使いたい人 |
-| ローカル実行 | 手元の PC で繰り返し調整したい人 |
+| Google Colab | Running the tool from a browser without local setup |
+| Local environment | Repeatedly iterating on files from your own machine |
 
-どちらの方法でも、基本の入出力は同じです。
+Both methods use the same input, configuration, and output layout.
 
-| 種類 | 場所 |
+| Type | Location |
 | --- | --- |
-| 入力 | `Assets/BRLYT` と `Assets/BRLAN` |
-| 色設定 | `color_config.json` |
-| 出力 | `Output` |
+| Input | `Assets/BRLYT` and `Assets/BRLAN` |
+| Color settings | `color_config.json` |
+| Output | `Output` |
 
-## Google Colab で使う
+## Run in Google Colab
 
-1. GitHub 上の `BetterRecolor.ipynb` を Colab で開きます。
-2. セットアップ用セルだけを先に実行します。
-3. `/content/BetterRecolor/color_config.json` を編集します。
-4. 残りのセルを上から順番に実行します。
-5. 生成された `Output.zip` をダウンロードします。
+1. Open `BetterRecolor.ipynb` from GitHub in Google Colab.
+2. Run only the setup cells first.
+3. Edit `/content/BetterRecolor/color_config.json`.
+4. Run the remaining cells from top to bottom.
+5. Download the generated `Output.zip`.
 
 ::: warning
-Colab のセットアップ用セルは、既存の `/content/BetterRecolor` を削除してから再取得します。
-編集済みの `color_config.json` や入力ファイルを置いている場合は、先に Google Drive などへ退避してください。
+The Colab setup cells delete the existing `/content/BetterRecolor` directory before cloning a fresh copy.
+If you have edited `color_config.json` or added input files under that directory, back them up to Google Drive or another safe location first.
 :::
 
-## ローカルで使う
+## Run Locally
 
-Python 3.11 以上を推奨します。
+Python 3.11 or later is recommended.
 
 ```sh
 pip install -r requirements.txt
 python main.py
 ```
 
-入力を省略して日本語で実行する場合は、次のように指定できます。
+To skip interactive prompts and run in English, use:
 
 ```sh
-python main.py --lang ja --yes
+python main.py --lang en --yes
 ```
 
-WSL2 では `python3 main.py` を使用してください。
+On WSL2, use `python3`:
 
-## 色設定
+```sh
+python3 main.py
+```
 
-`color_config.json` では、主に次の項目を編集します。
+## Color Settings
 
-| 項目 | 内容 |
+Edit the following fields in `color_config.json`.
+
+| Field | Description |
 | --- | --- |
-| `presets` | BRLYT 側で使用する色 |
-| `outline.free` | 通常時の BRLAN 側の縁取り色 |
-| `outline.select` | 選択時の BRLAN 側の縁取り色 |
+| `presets` | Colors applied to BRLYT files |
+| `outline.free` | BRLAN outline colors for the normal state |
+| `outline.select` | BRLAN outline colors for the selected state |
 
-色はすべて `#RRGGBB` 形式で指定します。
+All colors must use `#RRGGBB` format.
 
-## 出力後にすること
+## After Generating Output
 
-1. `Output` または `Output.zip` から生成ファイルを取り出します。
-2. 必要な `*.d` フォルダを元のアセットへ上書きします。
-3. [Wiimms SZS Tool](https://szs.wiimm.de/wszst/) で SZS に再パックします。
-4. ゲーム内で表示を確認します。
+1. Extract the generated files from `Output` or `Output.zip`.
+2. Copy the required `*.d` folders over your source assets.
+3. Repack the files into SZS archives with [Wiimms SZS Tool](https://szs.wiimm.de/wszst/).
+4. Check the result in-game.
 
-## 注意点
+## Notes
 
-- ローカル実行では、`tmp` と `Output` は実行ごとに作り直されます。
-- Colab では、セットアップを再実行すると `/content/BetterRecolor` 配下のファイルが削除されます。
-- マルチプレイ時の一部ボタン色は、プレイヤー識別のため意図的に変更されない場合があります。
+- Local runs recreate `tmp` and `Output` each time.
+- In Colab, rerunning the setup cells deletes everything under `/content/BetterRecolor`.
+- Some multiplayer button colors may intentionally remain unchanged to preserve player identification.
+

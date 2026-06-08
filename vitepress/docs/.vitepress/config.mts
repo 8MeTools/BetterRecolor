@@ -9,7 +9,8 @@ export default defineConfig({
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: 'Home', link: '/' },
-      { text: 'Getting Started', link: '/getting-started' }
+      { text: 'Getting Started', link: '/getting-started' },
+      { text: 'Reference', link: '/reference/' },
     ],
 
     sidebar: [
@@ -17,6 +18,22 @@ export default defineConfig({
         text: 'Getting Started',
         items: [
           { text: 'Quick Start', link: '/getting-started' }
+        ]
+      },
+      {
+        text: 'Reference',
+        items: [
+          { text: 'Overview', link: '/reference/' },
+          { text: 'What Is BetterRecolor?', link: '/reference/betterrecolor' },
+          { text: 'Run on WSL2', link: '/reference/wsl2' }
+        ]
+      },
+      {
+        text: 'Customization',
+        items: [
+          { text: 'Overview', link: '/customize/' },
+          { text: 'Retro Rewind Patches', link: '/customize/retro-rewind-patches' },
+          { text: 'Apply with Patches', link: '/customize/betterrecolor-patches' }
         ]
       }
     ],

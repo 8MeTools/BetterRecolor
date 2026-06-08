@@ -4,23 +4,24 @@ layout: home
 
 hero:
   name: "BetterRecolor"
-  text: "Say goodbye to editing each color one by one!"
-  tagline: Google Colab でもローカル環境でも、JSON / JSON5 化した BRLYT・BRLAN を編集して再生成できます。
+  text: "Stop editing UI colors one file at a time."
+  tagline: Batch-edit BRLYT and BRLAN color data from JSON / JSON5, either in Google Colab or on your local machine.
   actions:
     - theme: brand
-      text: 使い方を見る
+      text: Get Started
       link: '/getting-started'
     - theme: alt
       text: GitHub
       link: https://github.com/8MeTools/BetterRecolor
 
 features:
-  - title: 色設定を一括管理
-    details: color_config.json に指定した色を読み込み、BRLYT 側のプリセット色と BRLAN 側の縁取り色へ反映します。
-  - title: Colab で実行可能
-    details: Python 環境を手元に用意しなくても、ブラウザ上でセットアップから出力のダウンロードまで進められます。
-  - title: ローカル実行にも対応
-    details: Python 3.11 以上の環境があれば、手元の Assets/BRLYT と Assets/BRLAN を使って繰り返し処理できます。
-  - title: 出力後の作業も明確
-    details: 生成された Output を元のアセットへ反映し、Wiimms SZS Tool で再パックしてゲーム内で確認します。
+  - title: Centralized color settings
+    details: Define colors in color_config.json and apply them to BRLYT presets and BRLAN outline colors in one run.
+  - title: Runs in Google Colab
+    details: Use BetterRecolor from your browser without setting up Python or dependencies locally.
+  - title: Works locally
+    details: Use Python 3.11 or later with your local Assets/BRLYT and Assets/BRLAN folders for repeated iteration.
+  - title: Clear output workflow
+    details: Apply the generated Output files to your assets, repack them with Wiimms SZS Tool, and verify the result in-game.
 ---
+
