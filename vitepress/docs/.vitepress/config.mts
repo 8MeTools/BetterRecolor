@@ -4,6 +4,7 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   title: "Better Recolor Wiki",
   description: "An accessible UI editing tool for MKWii, powered by Google Colab and local envs.",
+  srcExclude: ['temp/**'],
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
@@ -32,7 +33,38 @@ export default defineConfig({
     ja: {
       label: 'Japanese',
       lang: 'ja',
-      link: '/ja/'
+      link: '/ja/',
+      themeConfig: {
+        nav: [
+          { text: 'ホーム', link: '/ja/' },
+          { text: 'クイックスタート', link: '/ja/getting-started' },
+          { text: 'リファレンス', link: '/ja/reference/' }
+        ],
+        sidebar: [
+          {
+            text: 'はじめに',
+            items: [
+              { text: 'クイックスタート', link: '/ja/getting-started' }
+            ]
+          },
+          {
+            text: 'リファレンス',
+            items: [
+              { text: '概要(リファレンス)', link: '/ja/reference/' },
+              { text: 'BetterRecolor とは', link: '/ja/reference/betterrecolor' },
+              { text: 'WSL2 で実行する', link: '/ja/reference/wsl2' },
+            ]
+          },
+          {
+            text: 'カスタマイズ',
+            items: [
+              { text: '概要(カスタマイズ)', link: '/ja/customize/' },
+              { text: 'Patchesシステムについて', link: '/ja/customize/retro-rewind-patches' },
+              { text: 'Patchesを利用して適用する', link: '/ja/customize/betterrecolor-patches' }
+            ]
+          }
+        ]
+      }
     },
   }
 })

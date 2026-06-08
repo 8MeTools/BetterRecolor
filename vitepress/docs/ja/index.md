@@ -9,7 +9,7 @@ hero:
   actions:
     - theme: brand
       text: 使い方を見る
-      link: '/getting-started'
+      link: '/ja/getting-started'
     - theme: alt
       text: GitHub
       link: https://github.com/8MeTools/BetterRecolor
@@ -24,10 +24,3 @@ features:
   - title: 出力後の作業も明確
     details: 生成された Output を元のアセットへ反映し、Wiimms SZS Tool で再パックしてゲーム内で確認します。
 ---
-
-## 概要
-
-BetterRecolor は、ゲーム内に表示されるボタンやテキストの色をまとめて変更するためのツールです。
-
-デコード済みの `BRLYT`（レイアウトファイル）と `BRLAN`（アニメーションファイル）を JSON / JSON5 として編集し、処理後に再びゲーム用ファイルとして出力します。
-
