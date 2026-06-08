@@ -181,3 +181,11 @@ EditedBRLAN/
 EditedBRLYT/
 
 .DS_Store
+node_modules/
+api-examples.md
+markdown-examples.md
+
+# VitePress generated files
+vitepress/docs/.vitepress/.temp/
+vitepress/docs/.vitepress/cache/
+vitepress/docs/.vitepress/dist/
