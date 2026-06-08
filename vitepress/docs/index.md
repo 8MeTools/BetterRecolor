@@ -5,7 +5,7 @@ layout: home
 hero:
   name: "BetterRecolor"
   text: "Stop editing UI colors one file at a time."
-  tagline: Batch-edit BRLYT and BRLAN color data from JSON / JSON5, either in Google Colab or on your local machine.
+  tagline: Batch-edit BRLYT and BRLAN color data from JSON, either in Google Colab or on your local machine.
   actions:
     - theme: brand
       text: Get Started

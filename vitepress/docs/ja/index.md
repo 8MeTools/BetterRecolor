@@ -4,8 +4,8 @@ layout: home
 
 hero:
   name: "BetterRecolor"
-  text: "ひとつひとつの色編集にさようなら。"
-  tagline: Google Colab でもローカル環境でも、JSON / JSON5 化した BRLYT・BRLAN を編集して再生成できます。
+  text: "ひとつひとつの色編集に別れを告げましょう。"
+  tagline: Google Colab でもローカル環境でも、JSON化した BRLYT・BRLAN を編集して再生成できます。
   actions:
     - theme: brand
       text: 使い方を見る
@@ -20,7 +20,7 @@ features:
   - title: Colab で実行可能
     details: Python 環境を手元に用意しなくても、ブラウザ上でセットアップから出力のダウンロードまで進められます。
   - title: ローカル実行にも対応
-    details: Python 3.11 以上の環境があれば、手元の Assets/BRLYT と Assets/BRLAN を使って繰り返し処理できます。
+    details: Python 3.11 以上の環境があれば、お手元の環境で繰り返し処理できます。
   - title: 出力後の作業も明確
-    details: 生成された Output を元のアセットへ反映し、Wiimms SZS Tool で再パックしてゲーム内で確認します。
+    details: 生成されたサブアセットを元のアセットへ反映し、Wiimms SZS Tool で再パックしてゲーム内で確認します。
 ---
