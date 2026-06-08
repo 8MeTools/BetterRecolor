@@ -11,6 +11,9 @@ hero:
       text: Get Started
       link: '/getting-started'
     - theme: alt
+      text: Try in Colab
+      link: https://colab.research.google.com/github/8MeTools/BetterRecolor/blob/main/BetterRecolor.ipynb
+    - theme: alt
       text: GitHub
       link: https://github.com/8MeTools/BetterRecolor
 

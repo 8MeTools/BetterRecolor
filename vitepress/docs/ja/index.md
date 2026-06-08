@@ -11,6 +11,9 @@ hero:
       text: 使い方を見る
       link: '/ja/getting-started'
     - theme: alt
+      text: Colabで試す
+      link: https://colab.research.google.com/github/8MeTools/BetterRecolor/blob/main/BetterRecolor.ipynb
+    - theme: alt
       text: GitHub
       link: https://github.com/8MeTools/BetterRecolor
 
@@ -20,7 +23,7 @@ features:
   - title: Colab で実行可能
     details: Python 環境を手元に用意しなくても、ブラウザ上でセットアップから出力のダウンロードまで進められます。
   - title: ローカル実行にも対応
-    details: Python 3.11 以上の環境があれば、お手元の環境で繰り返し処理できます。
+    details: Python 3.11 以上の環境があれば、お手元の環境で繰り返しの処理が可能です。
   - title: 出力後の作業も明確
     details: 生成されたサブアセットを元のアセットへ反映し、Wiimms SZS Tool で再パックしてゲーム内で確認します。
 ---

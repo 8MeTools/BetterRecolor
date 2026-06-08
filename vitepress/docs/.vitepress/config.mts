@@ -11,6 +11,7 @@ export default defineConfig({
       { text: 'Home', link: '/' },
       { text: 'Getting Started', link: '/getting-started' },
       { text: 'Reference', link: '/reference/' },
+      { text: 'Try in Colab', link: 'https://colab.research.google.com/github/8MeTools/BetterRecolor/blob/main/BetterRecolor.ipynb' },
     ],
 
     sidebar: [
@@ -55,7 +56,8 @@ export default defineConfig({
         nav: [
           { text: 'ホーム', link: '/ja/' },
           { text: 'クイックスタート', link: '/ja/getting-started' },
-          { text: 'リファレンス', link: '/ja/reference/' }
+          { text: 'リファレンス', link: '/ja/reference/' },
+          { text: 'Colabで試す', link: 'https://colab.research.google.com/github/8MeTools/BetterRecolor/blob/main/BetterRecolor.ipynb' },
         ],
         sidebar: [
           {
