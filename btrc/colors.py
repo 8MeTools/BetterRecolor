@@ -1,7 +1,6 @@
 import json
 from pathlib import Path
 import re
-from colr import color
 from .i18n import t
 
 HEX_PATTERN = re.compile(r"^#([A-Fa-f0-9]{6})$")
@@ -10,6 +9,11 @@ HEX_PATTERN = re.compile(r"^#([A-Fa-f0-9]{6})$")
 def hex_to_rgb(hex_color):
     hex_color = hex_color.lstrip("#")
     return tuple(int(hex_color[i : i + 2], 16) for i in (0, 2, 4))
+
+
+def color_block(hex_color, text="■"):
+    r, g, b = hex_to_rgb(hex_color)
+    return f"\x1b[38;2;{r};{g};{b}m{text}\x1b[0m"
 
 
 def rgb_to_hex(r, g, b):
@@ -160,14 +164,14 @@ def print_loaded_color_preview(text_free_colors, text_select_colors):
     select_outline = rgb_to_hex(*text_select_colors[1])
     print(
         t("preview_outline").format(
-            state_name="free", value=free_outline, block=color("■", fore=free_outline)
+            state_name="free", value=free_outline, block=color_block(free_outline)
         )
     )
     print(
         t("preview_outline").format(
             state_name="select",
             value=select_outline,
-            block=color("■", fore=select_outline),
+            block=color_block(select_outline),
         )
     )
 
@@ -187,11 +191,11 @@ def print_preset(name):
     print(t("preset_title").format(name=name))
     print(
         t("preset_white").format(
-            value=preset["white"], block=color("■", fore=preset["white"])
+            value=preset["white"], block=color_block(preset["white"])
         )
     )
     print(
         t("preset_black").format(
-            value=preset["black"], block=color("■", fore=preset["black"])
+            value=preset["black"], block=color_block(preset["black"])
         )
     )
