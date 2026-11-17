@@ -34,7 +34,8 @@ export default defineConfig({
         items: [
           { text: 'Overview', link: '/customize/' },
           { text: 'Retro Rewind Patches', link: '/customize/retro-rewind-patches' },
-          { text: 'Apply with Patches', link: '/customize/betterrecolor-patches' }
+          { text: 'Apply with Patches', link: '/customize/betterrecolor-patches' },
+          { text: 'Fix Title Screen Crash (RR v6.13.5+)', link: '/customize/fix-title-screen-crash' }
         ]
       }
     ],
