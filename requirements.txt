@@ -1,4 +1,2 @@
-colour
-colr
 json5
 i18nice[yaml]

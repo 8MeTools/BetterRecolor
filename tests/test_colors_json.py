@@ -4,6 +4,7 @@ import pytest
 
 from btrc.colors import (
     build_color_map_from_presets,
+    color_block,
     color_presets,
     confirm_apply_colors,
     hex_to_rgb,
@@ -154,3 +155,7 @@ def test_confirm_apply_colors_invalid_then_no(monkeypatch):
     monkeypatch.setattr("builtins.print", lambda *args, **kwargs: printed.append(args))
     assert confirm_apply_colors() is False
     assert len(printed) == 1
+
+
+def test_color_block_returns_ansi_truecolor_string():
+    assert color_block("#FF8000") == "\x1b[38;2;255;128;0m■\x1b[0m"

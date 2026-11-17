@@ -15,7 +15,7 @@ jobs:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
@@ -44,7 +44,7 @@ jobs:
           zip -r dist/ButtonTextReColorizer.zip . -x ".git/*" "dist/*" "tests/*" "tmp/*" "Output/*" "EditedBRLAN/*" "EditedBRLYT/*" "__pycache__/*" "*__pycache__/*"
 
       - name: Publish GitHub Release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         if: ${{ steps.tag.outputs.skip != 'true' }}
         with:
           tag_name: ${{ steps.tag.outputs.tag }}
