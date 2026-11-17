@@ -189,3 +189,5 @@ markdown-examples.md
 vitepress/docs/.vitepress/.temp/
 vitepress/docs/.vitepress/cache/
 vitepress/docs/.vitepress/dist/
+
+.btrc/
