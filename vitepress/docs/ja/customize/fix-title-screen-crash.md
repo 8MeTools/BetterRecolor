@@ -1,4 +1,4 @@
-# Retro Rewind v6.13.5以降 タイトル画面でクラッシュした場合の対処法
+# Retro Rewind v6.13.5以降 ライセンスをセレクトした直後でクラッシュした場合の対処法
 
 最終更新日: 2026年11月17日
 
@@ -13,8 +13,8 @@
 
 ### 対象のファイル
 - /button/blyt/common_w067_title_large_3parts.brlyt
-- /button/blyt/common_w067_title_large_2parts.brlyt
-- /button/blyt/common_w067_title_large_1parts.brlyt
+- /button/blyt/common_w071_title_large_2parts.brlyt
+- /button/blyt/common_w072_title_large_1parts.brlyt
 
 詳しい情報については後述していきます。
 
@@ -59,7 +59,7 @@ C++のコードが読めなくても問題はありません。関数の名前�
 ## brlyt側の構成を見る
 ![純正brlytのfuchi_patternの頂点カラーが黄色（#FFFF00FF）になっている](/img/fix-title-screen-crash/01.png)
 
-これは純正のTitle.szsに含まれる`/button/blyt/common_w067_title_large_2parts.brlyt`をSwitch Toolboxで開いた際のプレビューです。`fuchi_pattern`のPaneを選択してVertex Colorの項目を確認すると、`#FFFF00FF`(黄色)になっています。最後の`FF`はアルファ値(透明度)です。
+これは純正のTitle.szsに含まれる`/button/blyt/common_w071_title_large_2parts.brlyt`をSwitch Toolboxで開いた際のプレビューです。`fuchi_pattern`のPaneを選択してVertex Colorの項目を確認すると、`#FFFF00FF`(黄色)になっています。最後の`FF`はアルファ値(透明度)です。
 
 先述のC++コードは、この黄色を白色に変更するための役割を担っていることになります。つまり、変更前は`#FFFF00FF`だったのが、コード適用後は`#FFFFFFFF`という状態になります。変更後のイメージは以下を見てください。
 
@@ -67,8 +67,8 @@ C++のコードが読めなくても問題はありません。関数の名前�
 
 ピンク色の部分は気になると思いますが、今回は無視して大丈夫です。純正のbrlytでは、ボタンカラーがゲーム側で決定されるため、ピンク色の部分は実際には表示されないからです。
 
-::: details 黄色を白色に変更しなければならない理由を考察
-Retro Rewindではゲーム内でHUDカラーを設定できますが、ここで設定したカラーがタイトルのボタンに限っては適切に反映されません。例えば、HUDカラーをブルーに設定した場合、タイトルのボタンカラーは青色ではなく緑色のように見えます。これは、brlyt側の黄ばみと青色が混ざっているためです。見た目上の問題を解消するため、RR側ではC++コードで黄色を白色に変更していると考えられます。あくまで憶測ですが...。
+::: details 黄色を白色に変更しなければならない理由
+Retro Rewindではゲーム内でHUDカラーを設定できますが、ここで設定したカラーがタイトルのボタンに限っては適切に反映されません。例えば、HUDカラーをブルーに設定した場合、タイトルのボタンカラーは青色ではなく緑色のように見えます。これは、brlyt側の黄ばみと青色が混ざっているためです。見た目上の問題を解消するため、RR側ではC++コードで黄色を白色に変更しています。
 :::
 
 ## Recolor系統でクラッシュする原因
@@ -94,8 +94,8 @@ SZSファイルはSwitch Toolboxで開くことができます。開けたら、
 
 今回、編集対象となる`.brlyt`ファイルは以下の通りです。
 - /button/blyt/common_w067_title_large_3parts.brlyt
-- /button/blyt/common_w067_title_large_2parts.brlyt
-- /button/blyt/common_w067_title_large_1parts.brlyt
+- /button/blyt/common_w071_title_large_2parts.brlyt
+- /button/blyt/common_w072_title_large_1parts.brlyt
 
 ### 2. Paneを新規に作成する
 
