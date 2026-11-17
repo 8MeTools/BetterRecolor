@@ -139,4 +139,4 @@ Since we edited `common_w067_title_large_3parts.brlyt` this time, please follow 
 ## Verify in Game
 Once you have compressed the SZS containing the modified brlyt, verify that it works correctly in-game. If you can proceed without crashing, you have succeeded. Great job!
 
-Translation by [PLaMon Translate Desktop](https://github.com/tanakh/plamo-translate-desktop)
+Translation by [PLaMo Translate Desktop](https://github.com/tanakh/plamo-translate-desktop)
