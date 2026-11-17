@@ -79,7 +79,8 @@ export default defineConfig({
             items: [
               { text: '概要(カスタマイズ)', link: '/ja/customize/' },
               { text: 'Patchesシステムについて', link: '/ja/customize/retro-rewind-patches' },
-              { text: 'Patchesを利用して適用する', link: '/ja/customize/betterrecolor-patches' }
+              { text: 'Patchesを利用して適用する', link: '/ja/customize/betterrecolor-patches' },
+              { text: 'タイトル画面の修正(RR v6.13.5+)', link: '/ja/customize/fix-title-screen-crash'}
             ]
           }
         ]
